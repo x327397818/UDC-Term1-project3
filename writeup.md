@@ -1,4 +1,13 @@
-# Behaviorial Cloning Project
+# **Behavioral Cloning** 
+
+**Behavioral Cloning Project**
+
+The goals / steps of this project are the following:
+* Use the simulator to collect data of good driving behavior
+* Build, a convolution neural network in Keras that predicts steering angles from images
+* Train and validate the model with a training and validation set
+* Test that the model successfully drives around track one without leaving the road
+* Summarize the results with a written report
 
 
 [//]: # (Image References)
@@ -12,76 +21,29 @@
 [flipped_image]: ./output_img/flipped_image.png "flipped_image"
 [cropped_image]: ./output_img/cropped_image.png "cropped_image"
 
-[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
-Overview
+## Rubric Points
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+
 ---
-This repository contains starting files for the Behavioral Cloning Project.
+### Files Submitted & Code Quality
 
-In this project, I use convolution neural networks to clone driving behavior. I train, validate and test a model using Keras. The model output a steering angle to an autonomous vehicle.
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
-A simulator can be used to steer a car around a track for data collection. Image data and steering angles are collected to train a CNN network and then use this model to drive the car autonomously around the track.
+My project includes the following files:
+* model.py containing the script to create and train the model
+* drive.py for driving the car in autonomous mode
+* model_track2.h5 containing a trained convolution neural network 
 
-To meet specifications, the project contains following files: 
-* model.py (script used to create and train the model)
-* drive.py (script to drive the car - feel free to modify this file)
-* model_track2.h5 (a trained Keras model)
-* run1.mp4 & run2.mp4 (a video recording of  vehicle driving autonomously around 1st&2nd track)
-
-### Dependencies
-This lab requires:
-
-* [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit)
-
-The lab enviroment can be created with CarND Term1 Starter Kit. Click [here](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) for the details.
-
-The simulator can be downloaded from the classroom.
-
-## Details About Files In This Directory
-
-### `drive.py`
-
-Usage of `drive.py` requires you have saved the trained model as an h5 file, i.e. `model.h5`. See the [Keras documentation](https://keras.io/getting-started/faq/#how-can-i-save-a-keras-model) for how to create this file using the following command:
-```sh
-model.save(filepath)
-```
-
-Once the model has been saved, it can be used with drive.py using this command:
-
+#### 2. Submission includes functional code
+Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model_track2.h5
 ```
 
-The above command will load the trained model and use the model to make predictions on individual images in real-time and send the predicted angle back to the server via a websocket connection.
+#### 3. Submission code is usable and readable
 
-Note: There is known local system's setting issue with replacing "," with "." when using drive.py. When this happens it can make predicted steering values clipped to max/min values. If this occurs, a known fix for this is to add "export LANG=en_US.utf8" to the bashrc file.
-
-#### Saving a video of the autonomous agent
-
-```sh
-python drive.py model_track2.h5 run1
-```
-
-The fourth argument, `run1`, is the directory in which to save the images seen by the agent. If the directory already exists, it'll be overwritten.
-
-The image file name is a timestamp of when the image was seen. This information is used by `video.py` to create a chronological video of the agent driving.
-
-### `video.py`
-
-```sh
-python video.py run1
-```
-
-Creates a video based on images found in the `run1` directory. The name of the video will be the name of the directory followed by `'.mp4'`, so, in this case the video will be `run1.mp4`.
-
-Optionally, one can specify the FPS (frames per second) of the video:
-
-```sh
-python video.py run1 --fps 48
-```
-
-Will run the video at 48 FPS. The default FPS is 60.
-
+The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
 ### Model Architecture and Training Strategy
 
@@ -182,3 +144,4 @@ Regarding the 2nd track, at first, I use the model that is trained with only 1st
 I think it is because the 2nd track contains some info that 1st doesn't have(sharp turns/2 lanes/....). Then I collect some training data in 2nd track and put it together with 1st track data to the training model. 
 
 The trained model(model_track2.h5) works fine on both 1st track(run1.mp4) and 2nd track(run2.mp4).
+
